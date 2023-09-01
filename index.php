@@ -105,11 +105,14 @@
     ?>
 
                             <div class="container">
+                              <center>
                                 <div style="box-shadow: 3px 5px 5px rgba(255, 255, 255, 0.3); width:80%; border: 1px solid white; height: 25px; position: relative;">
-                                    <div style="width:<?php echo $percentage; ?>%; background-color: <?php echo $row['Team_Color']; ?>; height: 23px;">
+                                    <div style="float:left;width:<?php echo $percentage; ?>%; background-color: <?php echo $row['Team_Color']; ?>; height: 23px;">
                                         <div style="position: absolute; top: -2px; right: -50px; color: white;"><h4 class="camel"><?php echo $row['Point']; ?></h4></div>
                                     </div>
                                 </div>
+                              </center>
+                        
                             </div>
                             <br><br>
 
