@@ -8,7 +8,8 @@
 ### (OFC, the Admin pages was not added to avoid to smart new student to try to cheat using the admin panel )
 
 ## Screenshot : 
-https://i.imgur.com/MlsExpf.png
+
 ---
+![Oui](https://github.com/Derkino/Epitech-2023-Pool-Leaderboard/assets/142783965/2f5b8fc7-cb57-4e15-8a99-1fc75ba97823)
 
 ### Made by André Stana & Julien Roy
