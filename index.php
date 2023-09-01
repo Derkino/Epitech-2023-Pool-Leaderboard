@@ -86,8 +86,11 @@
                         }
 
                         foreach ($rowsArray as $row) {
-                            $percentage = ($row['Point'] / $totalPoints) * 100;
-                            if ($percentage < 0) { $pourcentage = 0; }
+                            if ($totalPoints != 0) {
+                                $percentage = ($row['Point'] / $totalPoints) * 100;
+                            } else {
+                                $percentage = 0; // Handle the case where $totalPoints is zero.
+                            }
                             ?>
 
                             <div class="container">
