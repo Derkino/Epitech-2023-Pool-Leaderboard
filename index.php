@@ -80,19 +80,29 @@
                         $rowsArray = array(); // Create an array to store the rows
                         
                         while ($row = $result->fetch_assoc()) {
-                            $rowsArray[] = $row; // Store each row in the array
-                            // Assuming there's a 'Points' field in the database for each team
-                            $totalPoints += $row['Point'];
-                        }
+                         $rowsArray[] = $row; // Store each row in the array
+                         // Assuming there's a 'Points' field in the database for each team
+                         if ($row['Point'] >= 0) {
+                           $totalPoints += $row['Point'];
+                         }
+                         
+                     }
 
-                        foreach ($rowsArray as $row) {
-                            if ($totalPoints < 0) { $totalPoints = 0; }
-                            if ($totalPoints != 0) {
-                                $percentage = ($row['Point'] / $totalPoints) * 100;
-                            } else {
-                                $percentage = 0; // Handle the case where $totalPoints is zero.
-                            }
-                            ?>
+                     foreach ($rowsArray as $row) {
+                         if ($totalPoints > 0) {
+                             $percentage = ($row['Point'] / $totalPoints) * 100;
+                         } else {
+                             $percentage = 0; // Handle the case where $totalPoints is zero.
+                         }
+                         // Ensure that the percentage is not greater than 100
+                         if ($percentage > 100) {
+                             $percentage = 100;
+                         } 
+
+                         if ($percentage <= 0) {
+                             $percentage = 0;
+                         } 
+    ?>
 
                             <div class="container">
                                 <div style="box-shadow: 3px 5px 5px rgba(255, 255, 255, 0.3); width:80%; border: 1px solid white; height: 25px; position: relative;">
