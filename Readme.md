@@ -8,7 +8,8 @@
 ### (OFC, the Admin pages was not added to avoid to smart new student to try to cheat using the admin panel )
 
 ## Screenshot : 
-![BigBar](https://github.com/Derkino/Epitech-2023-Pool-Leaderboard/assets/142783965/eba470b2-1d9c-44fc-addb-d5931c000147)
+![BigBar](https://github.com/Derkino/Epitech-2023-Pool-Leaderboard/assets/142783965/fd733ebd-3185-4aab-bc0c-2b8609d46ff7)
+
 
 ---
 
