@@ -224,7 +224,7 @@
          <br><br><br><br>
          <br><br><br><br>
          <div class="text-center" style="width: 100%; bottom: 0; position: relative; background-color: rgba(255, 255, 255, 0.5);">
-            Que le sort vous soit favorable !
+            May the odds be ever in your favor !
          </div>
       </div>
       <BR>
