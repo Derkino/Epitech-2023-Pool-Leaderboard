@@ -60,51 +60,60 @@
                <h3 class="custom-font text-center" style="margin-top: 3px; color: blue;">Théoricien</h3>
             </div>
          </div>
-      </div>
-      <div class="container">
-      <div class="row">
-         <div class="col">
-            <br><br>
-            <h3 class="custom-font text-center" style="color:white;"> LeaderBoard </h3>
-            <br>
-            <table class="custom">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Point</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <?php
+
+         <br>
+         <br>
+
+
+    <?php
                         // Include the database connection file
                         include 'inc/db.php';
                         
                         // Query to select all users and order by point in ascending order
-                        $sql = "SELECT * FROM users ORDER BY point DESC";
+                        $sql = "SELECT * FROM team_point ORDER BY Point DESC";
                         
                         // Execute the query
                         $result = $conn->query($sql);
                         
                         if ($result->num_rows > 0) {
-                            // Output data in a table format
-                            while ($row = $result->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td class='camel'; style='color: #bd5b87;font-size:28px;'>" . $row["Name"] . "</td>";
-                                echo "<td class='camel'; style='color: #bd5b87;font-size:28px;'>" . $row["Point"] . "</td>";
-                            }
-                        } else {
-                            echo "Rien à afficher pour le moment.";
+                        $totalPoints = 0;
+                        $rowsArray = array(); // Create an array to store the rows
+                        
+                        while ($row = $result->fetch_assoc()) {
+                            $rowsArray[] = $row; // Store each row in the array
+                            // Assuming there's a 'Points' field in the database for each team
+                            $totalPoints += $row['Point'];
                         }
+
+                        foreach ($rowsArray as $row) {
+                            $percentage = ($row['Point'] / $totalPoints) * 100;
+                            ?>
+
+                            <div class="container">
+                                <div style="box-shadow: 3px 5px 5px rgba(255, 255, 255, 0.3); width:80%; border: 1px solid white; height: 25px; position: relative;">
+                                    <div style="width:<?php echo $percentage; ?>%; background-color: <?php echo $row['Team_Color']; ?>; height: 23px;">
+                                        <div style="position: absolute; top: -2px; right: -50px; color: white;"><h4 class="camel"><?php echo $row['Point']; ?></h4></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br><br>
+
+                            <?php
+                        }
+                    } else {
+                        echo "No users found.";
+                    }
                         
                         // Close the database connection
                         $conn->close();
                         ?>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-         <div class="col-lg-6">
+
+    <br><br>
+
+      <div class="container">
+      <div class="row">
+
+        <div class="col-lg-9 col-sm-12 col-md-9">
             <br><br> 
             <h3 class="custom-font text-center" style="color: white;"> Live View of Points </h3>
             <br>
@@ -153,14 +162,16 @@
                </tbody>
             </table>
          </div>
-         <div class="col-lg-3 col-sm-12">
+
+
+         <div class="col-sm-12 col-lg-3 col-md-3">
             <br><br>
-            <h3 class="custom-font text-center" style="color:white;"> Team LeaderBoard </h3>
+            <h3 class="custom-font text-center" style="color:white;"> LeaderBoard </h3>
             <br>
             <table class="custom">
                <thead>
                   <tr>
-                     <th scope="col"></th>
+                     <th scope="col">Name</th>
                      <th scope="col">Point</th>
                   </tr>
                </thead>
@@ -171,7 +182,7 @@
                         include 'inc/db.php';
                         
                         // Query to select all users and order by point in ascending order
-                        $sql = "SELECT * FROM team_point ORDER BY Point DESC";
+                        $sql = "SELECT * FROM users ORDER BY point DESC";
                         
                         // Execute the query
                         $result = $conn->query($sql);
@@ -179,19 +190,12 @@
                         if ($result->num_rows > 0) {
                             // Output data in a table format
                             while ($row = $result->fetch_assoc()) {
-                        
-                                if ($row["Team_Color"] == "Yellow") { $teamname = "<center><img class='img-fluid' src='img/team2.jpg' style='width:34px;'></center>"; }
-                                if ($row["Team_Color"] == "Red") { $teamname = "<center><img class='img-fluid' src='img/team1.jpg' style='width:34px;'></center>"; }
-                                if ($row["Team_Color"] == "Green") { $teamname = "<center><img class='img-fluid' src='img/team3.jpg' style='width:34px;'></center>"; }
-                                if ($row["Team_Color"] == "Blue") { $teamname = "<center><img class='img-fluid' src='img/team4.jpg' style='width:34px;'></center>"; }
-                        
-                        
                                 echo "<tr>";
-                                echo "<td class='camel' style='font-size:28px; color: " .  $row["Team_Color"] . ";'>" . $teamname . "</td>";
-                                echo "<td class='camel' style='font-size:28px; color: " .  $row["Team_Color"] . ";'>" . $row["Point"] . "</td>";
+                                echo "<td class='camel'; style='color: #bd5b87;font-size:28px;'>" . $row["Name"] . "</td>";
+                                echo "<td class='camel'; style='color: #bd5b87;font-size:28px;'>" . $row["Point"] . "</td>";
                             }
                         } else {
-                            echo "No users found.";
+                            echo "Rien à afficher pour le moment.";
                         }
                         
                         // Close the database connection
@@ -201,6 +205,7 @@
                </tbody>
             </table>
          </div>
+         
          <br><br><br><br>
          <br><br><br><br>
          <div class="text-center" style="width: 100%; bottom: 0; position: relative; background-color: rgba(255, 255, 255, 0.5);">
