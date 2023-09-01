@@ -100,7 +100,7 @@
                          } 
 
                          if ($percentage <= 0) {
-                             $percentage = 0;
+                             $percentage = 0.5;
                          } 
     ?>
 
